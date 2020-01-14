@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const port =  process.env.PORT || 4000;
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -14,4 +15,4 @@ app.use(express.json());
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
 
-app.listen(3000, () => console.log('Server Started'));
+app.listen(port, () => console.log(`Server listening on port: ${port}`));

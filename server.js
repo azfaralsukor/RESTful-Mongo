@@ -15,4 +15,8 @@ app.use(express.json());
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
 
+app.get('/', (req, res) => {
+    res.send('Welcome to CDN Freelancers RESTful API Server');
+});
+
 app.listen(port, () => console.log(`Server listening on port: ${port}`));

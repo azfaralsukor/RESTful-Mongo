@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Validate = require('../utils/validator');
 
 router.get('/', async (req, res) => {
   try {
@@ -24,6 +25,12 @@ router.post('/', async (req, res) => {
   if (users.length)
     return res.status(400).json({ message: 'User with this email already exists.' });
 
+  if (!Validate.email(req.body.email))
+    return res.status(400).json({ message: 'Please provide a valid email address.' });
+
+  if (!Validate.phone(req.body.phoneNumber))
+    return res.status(400).json({ message: 'Please provide a valid phone number.' });
+
   const user = new User(req.body);
   try {
     const newUser = await user.save();
@@ -41,6 +48,12 @@ router.put('/:id', getUser, async (req, res) => {
   users = await User.find({ email: req.body.email });
   if (users.length)
     return res.status(400).json({ message: 'User with this email already exists.' });
+
+  if (!Validate.email(req.body.email))
+    return res.status(400).json({ message: 'Please provide a valid email address.' });
+
+  if (!Validate.phone(req.body.phoneNumber))
+    return res.status(400).json({ message: 'Please provide a valid phone number.' });
 
   res.user.username = req.body.username;
   res.user.email = req.body.email;

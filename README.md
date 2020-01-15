@@ -7,7 +7,7 @@ ExpressJS' RESTful API with MongoDB server for [client](https://github.com/azfar
 These instructions will get you a copy of the project up and running on your local machine for development. See deployment for notes on how to deploy the project on a live system.
 
 ### File structure
-You should have these files after cloning.
+In this repository, you will find
 ```
 .
 |____LICENSE

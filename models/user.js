@@ -20,4 +20,4 @@ module.exports = mongoose.model('User', new mongoose.Schema({
   hobby: {
     type: String,
   },
-}));
+}, { versionKey: false }));

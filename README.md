@@ -1,6 +1,6 @@
 # RESTful API Server with MongoDB
 
-ExpressJS' RESTful API with MongoDB server for [client](https://github.com/azfaralsukor/CDNFreelancers).
+ExpressJS' RESTful API with MongoDB server for [client](https://azfaralsukor.github.com/CDNFreelancers).
 
 ## Getting Started
 

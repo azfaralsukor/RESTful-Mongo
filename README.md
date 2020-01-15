@@ -1,14 +1,13 @@
+# RESTful API Server with MongoDB
 
-
-# RESTful-Mongo
-
-ExpressJS' RESTful API with MongoDB.
+ExpressJS' RESTful API with MongoDB server for [client](https://github.com/azfaralsukor/CDNFreelancers).
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development. See deployment for notes on how to deploy the project on a live system.
 
 ### File structure
+You should have these files after download/ clone.
 ```
 .
 |____LICENSE
@@ -25,15 +24,15 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You should have these installed on your machine before getting started
-. [git](https://git-scm.com/)
-. [NodeJS](https://nodejs.org/en/)
-. [MongoDB](https://www.mongodb.com/)
-. [Visual Studio Code](https://code.visualstudio.com/)_(optional)_ 
-. [Robo3T](https://robomongo.org/)_(optional)_ 
+* [git](https://git-scm.com/)
+* [NodeJS](https://nodejs.org/en/)
+* [MongoDB](https://www.mongodb.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)_(optional)_ 
+* [Robo3T](https://robomongo.org/)_(optional)_ 
 
-### Download/ Cloning
+### Clone / Download
 
-You may download ZIP file and extract the files, clone with [GitHub Desktop](https://desktop.github.com/) or
+You may download ZIP file and extract the files, clone with [GitHub Desktop](https://desktop.github.com/), or
 
 ```
 cd /your-desired-path
@@ -52,7 +51,7 @@ echo "MONGO_URL=mongodb://localhost:27017/CDNFreelancers" >> .env
 npm start
 ```
 
-There you have it a simple REST API server on your machine
+There you have it a simple REST API server on your machine.
 
 ## Deployment
 

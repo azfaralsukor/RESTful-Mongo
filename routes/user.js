@@ -45,7 +45,7 @@ router.put('/:id', getUser, async (req, res) => {
   if (users.length)
     return res.status(400).json({ message: `Username ${req.body.username} is taken.` });
 
-  users = await User.find({ email: req.body.email });
+  users = await User.find({ email: req.body.email, _id: { $ne: req.params.id } });
   if (users.length)
     return res.status(400).json({ message: 'User with this email already exists.' });
 

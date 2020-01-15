@@ -17,22 +17,23 @@ router.get('/:id', getUser, (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  let users = await User.find({ username: req.body.username });
-  if (users.length)
-    return res.status(400).json({ message: `Username ${req.body.username} is taken.` });
-
-  users = await User.find({ email: req.body.email });
-  if (users.length)
-    return res.status(400).json({ message: 'User with this email already exists.' });
-
-  if (!Validate.email(req.body.email))
-    return res.status(400).json({ message: 'Please provide a valid email address.' });
-
-  if (!Validate.phone(req.body.phoneNumber))
-    return res.status(400).json({ message: 'Please provide a valid phone number.' });
-
-  const user = new User(req.body);
   try {
+    const { body } = req;
+    let users = await User.find({ username: body.username });
+    if (users.length)
+      return res.status(400).json({ message: `Username ${body.username} is taken.` });
+
+    users = await User.find({ email: body.email });
+    if (users.length)
+      return res.status(400).json({ message: 'User with this email already exists.' });
+
+    if (!Validate.email(body.email))
+      return res.status(400).json({ message: 'Please provide a valid email address.' });
+
+    if (!Validate.phone(body.phoneNumber))
+      return res.status(400).json({ message: 'Please provide a valid phone number.' });
+
+    const user = new User(body);
     const newUser = await user.save();
     res.status(201).json(newUser);
   } catch (err) {
@@ -41,26 +42,27 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', getUser, async (req, res) => {
-  let users = await User.find({ username: req.body.username, _id: { $ne: req.params.id } });
-  if (users.length)
-    return res.status(400).json({ message: `Username ${req.body.username} is taken.` });
-
-  users = await User.find({ email: req.body.email, _id: { $ne: req.params.id } });
-  if (users.length)
-    return res.status(400).json({ message: 'User with this email already exists.' });
-
-  if (!Validate.email(req.body.email))
-    return res.status(400).json({ message: 'Please provide a valid email address.' });
-
-  if (!Validate.phone(req.body.phoneNumber))
-    return res.status(400).json({ message: 'Please provide a valid phone number.' });
-
-  res.user.username = req.body.username;
-  res.user.email = req.body.email;
-  res.user.phoneNumber = req.body.phoneNumber;
-  res.user.skillsets = req.body.skillsets;
-  res.user.hobby = req.body.hobby;
   try {
+    const { body } = req;
+    let users = await User.find({ username: body.username, _id: { $ne: req.params.id } });
+    if (users.length)
+      return res.status(400).json({ message: `Username ${body.username} is taken.` });
+
+    users = await User.find({ email: body.email, _id: { $ne: req.params.id } });
+    if (users.length)
+      return res.status(400).json({ message: 'User with this email already exists.' });
+
+    if (!Validate.email(body.email))
+      return res.status(400).json({ message: 'Please provide a valid email address.' });
+
+    if (!Validate.phone(body.phoneNumber))
+      return res.status(400).json({ message: 'Please provide a valid phone number.' });
+
+    res.user.username = body.username;
+    res.user.email = body.email;
+    res.user.phoneNumber = body.phoneNumber;
+    res.user.skillsets = body.skillsets;
+    res.user.hobby = body.hobby;
     const updatedUser = await res.user.save();
     res.json(updatedUser);
   } catch (err) {

@@ -19,6 +19,9 @@ router.get('/:id', getUser, (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { body } = req;
+    if (!body.username)
+      return res.status(400).json({ message: 'Please provide a username.' });
+
     let users = await User.find({ username: body.username });
     if (users.length)
       return res.status(400).json({ message: `Username ${body.username} is taken.` });
@@ -44,6 +47,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', getUser, async (req, res) => {
   try {
     const { body } = req;
+    if (!body.username)
+      return res.status(400).json({ message: 'Please provide a username.' });
+
     let users = await User.find({ username: body.username, _id: { $ne: req.params.id } });
     if (users.length)
       return res.status(400).json({ message: `Username ${body.username} is taken.` });
